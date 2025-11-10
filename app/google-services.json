@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663677166063",
+    "project_id": "ca2-mad-fdf51",
+    "storage_bucket": "ca2-mad-fdf51.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663677166063:android:70b0f09d2be5a69171161a",
+        "android_client_info": {
+          "package_name": "com.jenningsdev.ca2mobileapplicationdevelopment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxWCC24Uji5aQJ3AYpIvQUBjkH4CMI4zY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
