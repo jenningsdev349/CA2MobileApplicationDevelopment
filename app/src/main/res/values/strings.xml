@@ -3,4 +3,8 @@
     <string name="title_label">BookWorm</string>
     <string name="sign_up_button">Sign Up</string>
     <string name="log_in_button">Log In</string>
+    <string name="email_label">Email:</string>
+    <string name="password_label">Password:</string>
+    <string name="name_label">Name:</string>
+    <string name="dob_label">Date of Birth:</string>
 </resources>
