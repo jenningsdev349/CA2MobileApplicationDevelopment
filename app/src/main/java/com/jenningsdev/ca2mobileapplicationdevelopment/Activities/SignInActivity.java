@@ -1,5 +1,6 @@
 package com.jenningsdev.ca2mobileapplicationdevelopment.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +54,8 @@ public class SignInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("BANANA", "Logged in.");
                             mUser = mAuth.getCurrentUser();
+                            Intent intent = new Intent(SignInActivity.this, DashboardActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(SignInActivity.this, "Authentication failed. Please try again.", Toast.LENGTH_SHORT).show();
                         }

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.credentials.CreateCredentialRequest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,12 +52,12 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d("myActivity", "createUserWithEmail:success");
+                            Log.d("SignUpActivity", "createUserWithEmail:success");
                             mUser = mAuth.getCurrentUser();
-                            Intent intent = new Intent(getApplicationContext(), CreateCredentialRequest.DisplayInfo.class);
+                            Intent intent = new Intent(SignUpActivity.this, DashboardActivity.class);
                             startActivity(intent);
                         } else {
-                            Log.w("myActivity", "createUserWithEmail:failure", task.getException());
+                            Log.w("SignUpActivity", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
