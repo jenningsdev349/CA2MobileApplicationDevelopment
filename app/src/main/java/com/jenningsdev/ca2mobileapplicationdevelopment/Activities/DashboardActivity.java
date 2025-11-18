@@ -116,6 +116,11 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        if (id == R.id.view_profile) {
+            Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
