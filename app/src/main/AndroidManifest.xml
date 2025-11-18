@@ -37,6 +37,9 @@
         <activity
             android:name=".Activities.ProfileActivity"
             android:exported="true" />
+        <activity
+            android:name=".Activities.UpdateBookActivity"
+            android:exported="true" />
     </application>
 
 

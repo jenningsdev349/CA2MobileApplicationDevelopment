@@ -24,4 +24,7 @@
     <string name="name_textView">Name:</string>
     <string name="profile_app_bar">Profile</string>
     <string name="dob_textView">DOB:</string>
+    <string name="delete_book_menu_option">Delete Book</string>
+    <string name="update_book_menu_option">Update Book</string>
+    <string name="update_book_button">Update Book</string>
 </resources>

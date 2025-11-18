@@ -1,17 +1,21 @@
 package com.jenningsdev.ca2mobileapplicationdevelopment.Data.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jenningsdev.ca2mobileapplicationdevelopment.Activities.UpdateBookActivity;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model.Book;
 import com.jenningsdev.ca2mobileapplicationdevelopment.R;
 
@@ -145,6 +149,31 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                     android.R.layout.simple_spinner_item,
                     statusOptions
             );
+
+            itemView.setOnLongClickListener(v -> {
+                PopupMenu popup = new PopupMenu(context, v);
+                popup.inflate(R.menu.item_options_menu);
+
+                popup.setOnMenuItemClickListener(menuItem -> {
+                    if (menuItem.getItemId() == R.id.delete_book) {
+                        int position = getAdapterPosition();
+                        itemList.remove(position);
+                        notifyItemRemoved(position);
+                        Toast.makeText(context, book.getTitle() + " removed!", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+
+                    if (menuItem.getItemId() == R.id.update_book) {
+                        Intent intent = new Intent(itemView.getContext(), UpdateBookActivity.class);
+                        itemView.getContext().startActivity(intent);
+                    }
+
+                    return false;
+                });
+
+                popup.show();
+                return true;
+            });
 
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             statusSpinner.setAdapter(adapter);
