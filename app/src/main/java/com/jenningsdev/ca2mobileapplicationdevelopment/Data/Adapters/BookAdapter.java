@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jenningsdev.ca2mobileapplicationdevelopment.Activities.UpdateBookActivity;
+import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Database.DBHandler;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model.Book;
 import com.jenningsdev.ca2mobileapplicationdevelopment.R;
 
@@ -29,11 +30,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     private List<Book> fullList;
     private OnBookClickListener listener;
 
+    private DBHandler db;
+
     public BookAdapter(Context context, List<Book> itemList, OnBookClickListener listener) {
         this.context = context;
         this.itemList = new ArrayList<>(itemList);
         this.fullList = new ArrayList<>(itemList);
         this.listener = listener;
+
+        this.db = new DBHandler(context);
     }
 
     @NonNull
@@ -157,6 +162,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 popup.setOnMenuItemClickListener(menuItem -> {
                     if (menuItem.getItemId() == R.id.delete_book) {
                         int position = getAdapterPosition();
+                        db.removeBook(book.getId());
+
                         itemList.remove(position);
                         notifyItemRemoved(position);
                         Toast.makeText(context, book.getTitle() + " removed!", Toast.LENGTH_SHORT).show();

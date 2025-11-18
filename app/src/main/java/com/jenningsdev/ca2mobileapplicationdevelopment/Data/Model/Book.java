@@ -3,18 +3,19 @@ package com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model;
 import java.util.List;
 
 public class Book {
+    int id;
     String title;
     String author;
     String category;
     String startDate;
-    List<Review> reviews;
+    Review review;
     boolean status;
 
-    public Book(String title, String author, String category, List<Review> reviews, String startDate, boolean status) {
+    public Book(int id, String title, String author, String category, String startDate, boolean status) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.category = category;
-        this.reviews = reviews;
         this.startDate = startDate;
         this.status = status;
     }
@@ -59,11 +60,19 @@ public class Book {
         this.status = status;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public Review getReview() {
+        return review;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

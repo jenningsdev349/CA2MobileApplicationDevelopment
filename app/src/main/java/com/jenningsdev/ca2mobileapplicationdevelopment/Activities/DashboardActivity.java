@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Adapters.BookAdapter;
+import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Database.DBHandler;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model.Book;
 import com.jenningsdev.ca2mobileapplicationdevelopment.R;
 
@@ -33,6 +35,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     List<Book> displayItems = new ArrayList<>();
     BookAdapter adapter;
+    DBHandler db;
+
+    private static final int REQUEST_ADD_BOOK = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class DashboardActivity extends AppCompatActivity {
             return insets;
         });
 
+        db = new DBHandler(this);
+        displayItems = db.getAllBooks();
+
         TextChangeHandler tch = new TextChangeHandler();
 
         MaterialToolbar toolbar = findViewById(R.id.material_toolbar);
@@ -52,13 +60,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         EditText searchEditText = findViewById(R.id.search_editText);
         searchEditText.addTextChangedListener(tch);
-
-        displayItems.add(new Book("The Hobbit", "J.R.R. Tolkien", "Fantasy", new ArrayList<>(), "2025-01-05", false));
-        displayItems.add(new Book("1984", "George Orwell", "Technology", new ArrayList<>(), "2025-02-12", true));
-        displayItems.add(new Book("To Kill a Mockingbird", "Harper Lee", "Lifestyle", new ArrayList<>(), "2025-03-01", false));
-        displayItems.add(new Book("The Great Gatsby", "F. Scott Fitzgerald", "Romance", new ArrayList<>(), "2025-03-10", true));
-        displayItems.add(new Book("The Catcher in the Rye", "J.D. Salinger", "Romance", new ArrayList<>(), "2025-04-20", false));
-
         Spinner categoryFilter = findViewById(R.id.category_filter_spinner);
         Spinner statusFilter = findViewById(R.id.status_filter_spinner);
 
@@ -113,7 +114,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         if (id == R.id.add_item) {
             Intent intent = new Intent(DashboardActivity.this, BookActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_ADD_BOOK);
         }
 
         if (id == R.id.view_profile) {
@@ -124,6 +125,15 @@ public class DashboardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ADD_BOOK && resultCode == RESULT_OK) {
+            List<Book> books = db.getAllBooks();
+            createDisplayList(books);
+        }
+    }
     public void createDisplayList(List<Book> displayItems) {
         adapter = new BookAdapter(this, displayItems, new BookAdapter.OnBookClickListener() {
         });
