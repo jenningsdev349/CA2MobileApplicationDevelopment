@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,24 +34,19 @@
         android:id="@+id/status_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
         android:text="@string/status_label"
-        app:layout_constraintBottom_toBottomOf="@+id/status_spinner"
-        app:layout_constraintEnd_toStartOf="@+id/status_spinner"
-        app:layout_constraintTop_toTopOf="@+id/status_spinner" />
+        android:padding="16dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/date_textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_author_textView" />
 
     <TextView
         android:id="@+id/genre_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/genre_label_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/genre_textView"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/book_title_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,9 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reviews_button"
-        app:layout_constraintTop_toTopOf="@+id/reviews_button" />
+        app:layout_constraintBottom_toBottomOf="@+id/status_textView"
+        app:layout_constraintStart_toEndOf="@+id/status_textView"
+        app:layout_constraintTop_toTopOf="@+id/status_textView" />
 
     <Button
         android:id="@+id/reviews_button"

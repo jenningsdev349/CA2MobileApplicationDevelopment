@@ -1,8 +1,11 @@
 package com.jenningsdev.ca2mobileapplicationdevelopment.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Adapters.BookAdapter;
 import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model.Book;
 import com.jenningsdev.ca2mobileapplicationdevelopment.R;
@@ -38,6 +42,9 @@ public class DashboardActivity extends AppCompatActivity {
 
         TextChangeHandler tch = new TextChangeHandler();
 
+        MaterialToolbar toolbar = findViewById(R.id.material_toolbar);
+        setSupportActionBar(toolbar);
+
         EditText searchEditText = findViewById(R.id.search_editText);
         searchEditText.addTextChangedListener(tch);
 
@@ -48,6 +55,22 @@ public class DashboardActivity extends AppCompatActivity {
         displayItems.add(new Book("The Catcher in the Rye", "J.D. Salinger", "Literature", new ArrayList<>(), "2025-04-20", false));
 
         createDisplayList(displayItems);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.add_item) {
+            Intent intent = new Intent(DashboardActivity.this, BookActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void createDisplayList(List<Book> displayItems) {

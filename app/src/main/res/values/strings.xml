@@ -12,4 +12,11 @@
     <string name="genre_textView">Genre:</string>
     <string name="review_button">Reviews</string>
     <string name="status_label">Status:</string>
+    <string name="add_book_menu_title">Add Book</string>
+    <string name="add_book_app_bar">Add Book</string>
+    <string name="title_label_add_book">Title:</string>
+    <string name="add_book_button">Add Book</string>
+    <string name="genre_label_add_book">Genre:</string>
+    <string name="author_label_add_book">Author:</string>
+    <string name="date_label_add_book">Date:</string>
 </resources>

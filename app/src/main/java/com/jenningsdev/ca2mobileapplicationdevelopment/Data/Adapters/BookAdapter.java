@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.jenningsdev.ca2mobileapplicationdevelopment.Data.Model.Book;
 import com.jenningsdev.ca2mobileapplicationdevelopment.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
@@ -70,7 +72,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, authorTextView, genreLabelTextView, genreTextView, dateTextView, statusTextView;
+        TextView titleTextView, authorTextView, genreTextView, dateTextView, statusTextView;
         Spinner statusSpinner;
         Button reviewsButton;
 
@@ -78,7 +80,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             super(bookView);
             titleTextView = bookView.findViewById(R.id.book_title_textView);
             authorTextView = bookView.findViewById(R.id.book_author_textView);
-            genreLabelTextView = bookView.findViewById(R.id.genre_label_textView);
             genreTextView = bookView.findViewById(R.id.genre_textView);
             dateTextView = bookView.findViewById(R.id.date_textView);
             statusTextView = bookView.findViewById(R.id.status_textView);
@@ -88,9 +89,21 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         void bind(final Book book) {
             titleTextView.setText(book.getTitle());
-            authorTextView.setText(book.getAuthor());
-            genreTextView.setText(book.getCategory());
-            dateTextView.setText(book.getStartDate());
+            authorTextView.setText(String.format("By " + book.getAuthor()));
+            genreTextView.setText(String.format("Genre: " + book.getCategory()));
+            dateTextView.setText(String.format("Start date: " + book.getStartDate()));
+
+            List<String> statusOptions = Arrays.asList("In Progress", "Finished");
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    itemView.getContext(),
+                    android.R.layout.simple_spinner_item,
+                    statusOptions
+            );
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            statusSpinner.setAdapter(adapter);
+
         }
     }
 }
