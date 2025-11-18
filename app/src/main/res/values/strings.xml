@@ -8,7 +8,7 @@
     <string name="name_label">Name:</string>
     <string name="dob_label">Date of Birth:</string>
     <string name="dashboard_app_bar">Books</string>
-    <string name="search_textView">Search:</string>
+    <string name="search_textView">Search by Name:</string>
     <string name="genre_textView">Genre:</string>
     <string name="review_button">Reviews</string>
     <string name="status_label">Status:</string>

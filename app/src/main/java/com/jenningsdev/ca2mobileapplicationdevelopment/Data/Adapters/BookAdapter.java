@@ -53,7 +53,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         return itemList.size();
     }
 
-    public void filter(String search) {
+    public void filterByName(String search) {
         List<Book> filteredList = new ArrayList<>();
 
         if (search == null || search.trim().isEmpty()) {
@@ -70,6 +70,51 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         itemList.addAll(filteredList);
         notifyDataSetChanged();
     }
+
+    public void filterByCategory(String category) {
+        List<Book> filteredList = new ArrayList<>();
+
+        if (category.equals("All")) {
+            filteredList.addAll(fullList);
+        } else {
+            for (Book book : fullList) {
+                if (book.getCategory().equalsIgnoreCase(category)) {
+                    filteredList.add(book);
+                }
+            }
+        }
+
+        itemList.clear();
+        itemList.addAll(filteredList);
+        notifyDataSetChanged();
+    }
+
+    public void filterByStatus(String status) {
+        List<Book> filteredList = new ArrayList<>();
+
+        if (status.equals("In Progress")) {
+
+            for (Book book : fullList) {
+                if (!book.isStatus()) {
+                    filteredList.add(book);
+                }
+            }
+        } else if (status.equals("Finished")) {
+            for (Book book : fullList) {
+                if (book.isStatus()) {
+                    filteredList.add(book);
+                }
+            }
+        } else {
+            filteredList.addAll(fullList);
+        }
+
+
+        itemList.clear();
+        itemList.addAll(filteredList);
+        notifyDataSetChanged();
+    }
+
 
     class BookViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView, authorTextView, genreTextView, dateTextView, statusTextView;
